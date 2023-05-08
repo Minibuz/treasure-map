@@ -1,22 +1,21 @@
 package tile;
 
+/**
+ * Representation of a Treasure as a tile.
+ *
+ * @author minibuz
+ */
 public class Treasure implements Tile {
 
     private final int x;
     private final int y;
-    private int amountOfChest;
 
-    public Treasure(int x, int y, int amountOfChest) {
+    private int treasuresLeft;
+
+    public Treasure(int x, int y, int treasuresLeft) {
         this.x = x;
         this.y = y;
-        this.amountOfChest = amountOfChest;
-    }
-
-    public void removeChest() {
-        if ( this.amountOfChest <= 0 ) {
-           throw new IllegalStateException("TODO Error");
-        }
-        this.amountOfChest = this.amountOfChest - 1;
+        this.treasuresLeft = treasuresLeft;
     }
 
     @Override
@@ -26,6 +25,22 @@ public class Treasure implements Tile {
 
     @Override
     public String toString() {
-        return "T - " + x + " - " + y + " - " + amountOfChest;
+        return "T" +
+                " - " + x +
+                " - " + y +
+                " - " + treasuresLeft;
+    }
+
+    /**
+     *
+     * @return
+     *          True if there's still chest on the tile, false otherwise.
+     */
+    public boolean haveChest() {
+        return treasuresLeft != 0;
+    }
+
+    public void removeOneTreasure() {
+        treasuresLeft--;
     }
 }
